@@ -1,0 +1,33 @@
+package browserStack;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
+
+public class WebBrowser {
+
+	public static final String userName ="renuverma_tafrsC";
+	public static final String accessKey ="Wy6q1RD4NCvas5XNTnvx";
+	public static final String url ="https://"+userName+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub";
+	
+	@Test
+    public void webBrowser() throws MalformedURLException 
+	{
+		
+		DesiredCapabilities dc = new DesiredCapabilities();
+		dc.setCapability("os", "windows");
+		dc.setCapability("os_version", "11");
+		dc.setCapability("browser", "chrome");
+		dc.setCapability("browser_version", "117");
+		dc.setCapability("name", "WebBrowser");
+		
+		WebDriver driver = new RemoteWebDriver(new URL(url),dc);
+		driver.get("https://www.facebook.com/");
+		System.out.println(driver.getTitle());
+		
+	}
+}
